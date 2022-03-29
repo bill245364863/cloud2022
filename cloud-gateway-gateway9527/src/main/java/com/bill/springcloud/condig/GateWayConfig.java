@@ -13,10 +13,29 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 public class GateWayConfig {
+    /**
+     * 代码中注入RouteLocator的Bean
+     * @Bean
+     * public RouteLocator myRoutes(RouteLocatorBuilder builder) {
+     *     return builder.routes()
+     *         .route(p -> p
+     *             .path("/get")
+     *             .filters(f -> f.addRequestHeader("Hello", "World"))
+     *             .uri("http://httpbin.org:80"))
+     *         .route(p -> p
+     *             .host("*.circuitbreaker.com")
+     *             .filters(f -> f.circuitBreaker(config -> config.setName("mycmd")))
+     *             .uri("http://httpbin.org:80")).
+     *         build();
+     * }
+     * @param routeLocatorBuilder
+     * @return
+     */
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder routeLocatorBuilder) {
         RouteLocatorBuilder.Builder routes = routeLocatorBuilder.routes();
-        routes.route("path_route_bill", r -> r.path("/baidu").uri("https://www.bilibili.com/video/BV18E411x7eT?p=70&spm_id_from=pageDriver"));
+        //注册id，路由路径，uri跳转路径 在不变更路径的前提下
+        routes.route("path_route_bill", r -> r.path("/baidu").uri("https://blog.csdn.net/u011863024/article/details/114298282"));
         return routes.build();
 
     }
