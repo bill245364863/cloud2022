@@ -1,0 +1,26 @@
+server:
+   port: 3355
+config:
+   name: bill2
+   info: i am here
+  #config client
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+      label: main #分支名称
+      name: config #配置文件名
+      profile: dev #文件后缀  config-dev.yml
+      uri: http://localhost:3344 #配置中心地址
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7002.com:7002/eureka, http://eureka7003.com:7003/eureka, http://eureka7001.com:7001/eureka #集群版本
+
+#暴露监控端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
